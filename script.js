@@ -510,16 +510,7 @@ async function scanURL() {
 
     } catch (error) {
 
-        const demo = {
-            risk_score: 50,
-            verdict: "SUSPICIOUS",
-            reasons: [
-               "The URL contains suspicious characteristics.",
-               "The website should be verified before entering personal information.",
-               "Do not enter passwords, OTPs, or banking details unless the website is trusted."
-           ]
-        };
-
+        const demo = demoURLAnalysis(url);
         result.innerHTML =
             createResultHTML(
                 "Demo URL Assessment",
