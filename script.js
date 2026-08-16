@@ -316,9 +316,9 @@ function updateScores() {
         `${scores.identity}%`;
 
 
-    window.updateReport = function updateReport() {
-    // all your existing updateReport code
-};
+    if (typeof window.updateReport === "function") {
+        window.updateReport();
+    }
 }
 
 
@@ -510,7 +510,7 @@ async function scanURL() {
 
     } catch (error) {
 
-        const demo = demoURLAnalysis(url);
+        const demo = demoMessageAnalysis(message);
         result.innerHTML =
             createResultHTML(
                 "Demo URL Assessment",
@@ -631,29 +631,11 @@ async function analyzeMessage() {
         updateScores();
 
 
-    } catch (error) {
-    console.error("Phishing scanner error:", error);
-
-    const demo = demoURLAnalysis(url);
-
-    result.innerHTML = createResultHTML(
-        "Demo URL Assessment",
-        demo
-    );
-
-    scores.phishing = Number(demo.risk_score || 0);
-
-    updateScores();
-
-    showMessage(
-        "Backend unavailable. Demo analysis shown."
-    );
-}
+    }  catch (error) { console.error( "Message analyzer error:", error ); let risk = 5; const reasons = []; const text = message.toLowerCase(); const patterns = { "urgent": [ 15, "Urgency-based social engineering detected." ], "immediately": [ 12, "Pressure tactics detected." ], "otp": [ 15, "Message requests or references an OTP." ], "password": [ 15, "Message references password credentials." ], "click here": [ 15, "Suspicious call-to-action detected." ], "verify": [ 12, "Account verification language detected." ], "account suspended": [ 15, "Threat-based account language detected." ], "winner": [ 15, "Prize manipulation detected." ], "prize": [ 15, "Reward-based manipulation detected." ] }; for ( const keyword in patterns ) { if ( text.includes(keyword) ) { risk += patterns[keyword][0]; reasons.push( patterns[keyword][1] ); } } if ( text.includes("http://") || text.includes("https://") ) { risk += 10; reasons.push( "Message contains a URL." ); } risk = Math.min( risk, 99 ); let verdict; if (risk >= 70) { verdict = "HIGH RISK - LIKELY SOCIAL ENGINEERING"; } else if (risk >= 40) { verdict = "MEDIUM RISK - SUSPICIOUS MESSAGE"; } else { verdict = "LOW RISK"; } if ( reasons.length === 0 ) { reasons.push( "No major social-engineering indicators detected." ); } const demo = { risk_score: risk, verdict: verdict, reasons: reasons }; result.innerHTML = createResultHTML( "Demo Message Threat Assessment", demo ); scores.phishing = Number( demo.risk_score || 0 ); updateScores(); showMessage( "Backend unavailable. Demo message analysis shown." ); } }
 
 
 // ============================================================
 // DEEPTRUST
-// NO IMAGE
 // ============================================================
 
 async function runDeepTrust() {
@@ -781,7 +763,6 @@ async function runDeepTrust() {
             "Backend unavailable. Demo analysis shown."
         );
     }
-}
 }
 window.addEventListener("DOMContentLoaded", () => {
     const button = document.getElementById("deepTrustButton");
@@ -1358,26 +1339,6 @@ function demoIdentity() {
 
 
 // ============================================================
-// HTML ESCAPING
-// ============================================================
-
-function escapeHTML(text) {
-
-    const div =
-        document.createElement(
-            "div"
-        );
-
-
-    div.textContent =
-        String(text);
-
-
-    return div.innerHTML;
-}
-
-
-// ============================================================
 // TOAST
 // ============================================================
 
@@ -1503,11 +1464,7 @@ async function scanURLFromBackend(url) {
 
         return result;
 
-    } catch (error) {
-        console.error("Phishing scanner error:", error);
-        return null;
-    }
-  }
+    } catch (error) { console.error( "Phishing scanner error:", error ); return null; } }
 
 window.addEventListener("load", () => {
     checkBackend();
