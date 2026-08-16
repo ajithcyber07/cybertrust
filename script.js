@@ -512,8 +512,12 @@ async function scanURL() {
 
         const demo = {
             risk_score: 50,
-            verdict: "Suspicious",
-            reason: "Demo analysis unavailable"
+            verdict: "SUSPICIOUS",
+            reasons: [
+               "The URL contains suspicious characteristics.",
+               "The website should be verified before entering personal information.",
+               "Do not enter passwords, OTPs, or banking details unless the website is trusted."
+          ]
         };
 
         result.innerHTML =
