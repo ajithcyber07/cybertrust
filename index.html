@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CyberTrust AI</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🛡
+            </div>
+
+            <div>
+                <h2>CyberTrust</h2>
+                <span>AI SECURITY</span>
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <button
+                class="nav-item active"
+                onclick="showPage('dashboard', this)"
+            >
+                <span>▣</span>
+                Dashboard
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="showPage('phishing', this)"
+            >
+                <span>🔗</span>
+                Phishing Scanner
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="showPage('message', this)"
+            >
+                <span>✉</span>
+                Message Analyzer
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="showPage('identity', this)"
+            >
+                <span>♙</span>
+                Identity Monitor
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="showPage('alerts', this)"
+            >
+                <span>⚠</span>
+                Alerts
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="showPage('reports', this)"
+            >
+                <span>▤</span>
+                Reports
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="backend-status">
+
+                <span
+                    id="statusDot"
+                    class="status-dot offline"
+                ></span>
+
+                <span id="backendStatus">
+                    Backend Offline
+                </span>
+
+            </div>
+
+            <small>
+                CyberTrust AI v1.0
+            </small>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div id="pageLocation">
+                Security Dashboard
+            </div>
+
+            <div
+                id="apiBadge"
+                class="api-badge"
+            >
+                API OFFLINE
+            </div>
+
+        </header>
+
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section
+            id="dashboard"
+            class="page active-page"
+        >
+
+            <div class="page-heading">
+
+                <span class="eyebrow">
+                    DIGITAL TRUST CENTER
+                </span>
+
+                <h1>
+                    CyberTrust AI
+                </h1>
+
+                <p>
+                    Unified cybersecurity threat detection
+                    and digital identity protection.
+                </p>
+
+            </div>
+
+
+            <div class="score-grid">
+
+                <div class="score-card">
+
+                    <div class="score-title">
+                        OVERALL RISK
+                    </div>
+
+                    <div
+                        id="overallScore"
+                        class="score"
+                    >
+                        72
+                    </div>
+
+                    <div class="progress">
+                        <div
+                            id="overallProgress"
+                            class="progress-bar"
+                            style="width:72%"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <div class="score-card">
+
+                    <div class="score-title">
+                        PHISHING
+                    </div>
+
+                    <div
+                        id="phishingScore"
+                        class="score"
+                    >
+                        82
+                    </div>
+
+                    <div class="progress">
+                        <div
+                            id="phishingProgress"
+                            class="progress-bar"
+                            style="width:82%"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <div class="score-card">
+
+                    <div class="score-title">
+                        MEDIA TRUST
+                    </div>
+
+                    <div class="score">
+                        <span id="mediaScore">64</span>
+                    </div>
+
+                    <div class="progress">
+                        <div
+                            id="mediaProgress"
+                            class="progress-bar"
+                            style="width:64%"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <div class="score-card">
+
+                    <div class="score-title">
+                        IDENTITY
+                    </div>
+
+                    <div class="score">
+                        <span id="identityScore">91</span>
+                    </div>
+
+                    <div class="progress">
+                        <div
+                            id="identityProgress"
+                            class="progress-bar"
+                            style="width:91%"
+                        ></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="section-title">
+                QUICK ACTIONS
+            </div>
+
+
+            <div class="quick-grid">
+
+                <div
+                    class="quick-card"
+                    onclick="openModule('phishing')"
+                >
+
+                    <div class="quick-icon">
+                        🔗
+                    </div>
+
+                    <h3>
+                        Scan URL
+                    </h3>
+
+                    <p>
+                        Detect suspicious links
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="quick-card"
+                    onclick="openModule('message')"
+                >
+
+                    <div class="quick-icon">
+                        ✉
+                    </div>
+
+                    <h3>
+                        Analyze Message
+                    </h3>
+
+                    <p>
+                        Detect social engineering
+                    </p>
+
+                </div>
+
+
+               
+
+                <div
+                    class="quick-card"
+                    onclick="openModule('identity')"
+                >
+
+                    <div class="quick-icon">
+                        ♙
+                    </div>
+
+                    <h3>
+                        Identity
+                    </h3>
+
+                    <p>
+                        Monitor identity risk
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= PHISHING ================= -->
+
+        <section
+            id="phishing"
+            class="page"
+        >
+
+            <div class="page-heading">
+
+                <span class="eyebrow">
+                    MODULE 01
+                </span>
+
+                <h1>
+                    PhishGuard AI
+                </h1>
+
+                <p>
+                    Analyze suspicious URLs and detect
+                    phishing indicators.
+                </p>
+
+            </div>
+
+
+            <div class="module-card">
+
+                <label>
+                    SUSPICIOUS URL
+                </label>
+
+                <input
+                    id="urlInput"
+                    type="text"
+                    placeholder="https://example.com/login"
+                >
+
+
+                <button
+                    class="primary-btn"
+                    onclick="scanURL()"
+                >
+                    SCAN URL
+                </button>
+
+
+                <div
+                    id="urlResult"
+                    class="result hidden"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= MESSAGE ================= -->
+
+        <section
+            id="message"
+            class="page"
+        >
+
+            <div class="page-heading">
+
+                <span class="eyebrow">
+                    MODULE 02
+                </span>
+
+                <h1>
+                    Message Analyzer
+                </h1>
+
+                <p>
+                    Detect phishing and social-engineering
+                    patterns in messages.
+                </p>
+
+            </div>
+
+
+            <div class="module-card">
+
+                <label>
+                    MESSAGE CONTENT
+                </label>
+
+                <textarea
+                    id="messageInput"
+                    rows="8"
+                    placeholder="Paste suspicious SMS, email or message here..."
+                ></textarea>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="analyzeMessage()"
+                >
+                    ANALYZE MESSAGE
+                </button>
+
+
+                <div
+                    id="messageResult"
+                    class="result hidden"
+                ></div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= IDENTITY ================= -->
+
+        <section
+            id="identity"
+            class="page"
+        >
+
+            <div class="page-heading">
+
+                <span class="eyebrow">
+                    MODULE 04
+                </span>
+
+                <h1>
+                    ZeroTrust Guardian
+                </h1>
+
+                <p>
+                    Monitor abnormal authentication
+                    and identity activity.
+                </p>
+
+            </div>
+
+
+            <div class="module-card">
+
+                <button
+                    class="primary-btn"
+                    onclick="checkIdentity()"
+                >
+                    RUN IDENTITY CHECK
+                </button>
+
+
+                <div
+                    id="identityResult"
+                    class="result hidden"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= ALERTS ================= -->
+
+        <section
+            id="alerts"
+            class="page"
+        >
+
+            <div class="page-heading">
+
+                <span class="eyebrow">
+                    MODULE 05
+                </span>
+
+                <h1>
+                    Security Alerts
+                </h1>
+
+                <p>
+                    Centralized cybersecurity threat alerts.
+                </p>
+
+            </div>
+
+
+            <div class="alert-list">
+
+                <div class="alert-card danger">
+
+                    <div class="alert-icon">
+                        ⚠
+                    </div>
+
+                    <div class="alert-content">
+
+                        <h3>
+                            Suspicious Login
+                        </h3>
+
+                        <p>
+                            Unknown device detected at
+                            unusual time.
+                        </p>
+
+                    </div>
+
+                    <span class="alert-label">
+                        HIGH
+                    </span>
+
+                </div>
+
+
+                <div class="alert-card warning">
+
+                    <div class="alert-icon">
+                        🔗
+                    </div>
+
+                    <div class="alert-content">
+
+                        <h3>
+                            Potential Phishing URL
+                        </h3>
+
+                        <p>
+                            Domain resembles a credential
+                            harvesting website.
+                        </p>
+
+                    </div>
+
+                    <span class="alert-label">
+                        MEDIUM
+                    </span>
+
+                </div>
+
+
+                <div class="alert-card warning">
+
+                    <div class="alert-icon">
+                        ◉
+                    </div>
+
+                    <div class="alert-content">
+
+                        <h3>
+                            Media Manipulation
+                        </h3>
+
+                        <p>
+                            Potential synthetic-media
+                            indicators detected.
+                        </p>
+
+                    </div>
+
+                    <span class="alert-label">
+                        MEDIUM
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= REPORT ================= -->
+
+        <section
+            id="reports"
+            class="page"
+        >
+
+            <div class="page-heading">
+
+                <span class="eyebrow">
+                    MODULE 06
+                </span>
+
+                <h1>
+                    Security Report
+                </h1>
+
+                <p>
+                    Unified cybersecurity posture
+                    and risk summary.
+                </p>
+
+            </div>
+
+
+            <div class="report-card">
+
+                <div class="report-title">
+                    OVERALL CYBER RISK
+                </div>
+
+
+                <div
+                    id="reportScore"
+                    class="report-score"
+                >
+                    72
+                </div>
+
+
+                <div
+                    id="riskLevel"
+                    class="risk-level"
+                >
+                    HIGH RISK
+                </div>
+
+
+                <div class="report-bars">
+
+                    <div class="report-row">
+                        <div>Phishing</div>
+
+                        <strong id="reportPhishing">
+                            82
+                        </strong>
+                    </div>
+
+                    <div class="progress">
+
+                        <div
+                            id="reportPhishingBar"
+                            class="progress-bar"
+                            style="width:82%"
+                        ></div>
+
+                    </div>
+
+
+                    <div class="report-row">
+                        <div>Media Trust</div>
+
+                        <strong id="reportMedia">
+                            64
+                        </strong>
+                    </div>
+
+                    <div class="progress">
+
+                        <div
+                            id="reportMediaBar"
+                            class="progress-bar"
+                            style="width:64%"
+                        ></div>
+
+                    </div>
+
+
+                    <div class="report-row">
+                        <div>Identity</div>
+
+                        <strong id="reportIdentity">
+                            91
+                        </strong>
+                    </div>
+
+                    <div class="progress">
+
+                        <div
+                            id="reportIdentityBar"
+                            class="progress-bar"
+                            style="width:91%"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="generateReport()"
+                >
+                    GENERATE SECURITY REPORT
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="script.js?v=2"></script>
+
+</body>
+
+</html>
